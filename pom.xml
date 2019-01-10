@@ -8,8 +8,8 @@
     <artifactId>hello-testng</artifactId>
     <version>1.0.0</version>
     <modules>
-        <module>mock-server</module>
-        <module>demo-testng</module>
+        <module>demo-server</module>
+        <module>demo-test</module>
     </modules>
     <packaging>pom</packaging>
 
