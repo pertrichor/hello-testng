@@ -12,7 +12,7 @@
         </groups>
 
         <classes>
-            <class name="test.testng.test.groups.GroupTest"/>
+            <class name="test.testng.test.group.GroupTest"/>
         </classes>
     </test>
 </suite>

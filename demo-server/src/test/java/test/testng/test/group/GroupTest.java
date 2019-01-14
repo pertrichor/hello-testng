@@ -1,4 +1,4 @@
-package test.testng.test.groups;
+package test.testng.test.group;
 
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.Test;
