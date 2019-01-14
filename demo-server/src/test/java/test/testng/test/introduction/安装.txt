@@ -1,0 +1,11 @@
+1. maven依赖
+<dependency>
+    <groupId>org.testng</groupId>
+    <artifactId>testng</artifactId>
+    <version>6.8.7</version>
+    <scope>test</scope>
+</dependency>
+
+2. IDEA -> Settings -> Plugins -> 搜索TestNG-J 安装并启用.
+
+3. 官方文档地址: https://testng.org/doc/documentation-main.html

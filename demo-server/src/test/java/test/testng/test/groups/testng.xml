@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="GroupTestSuite" verbose="1">
+    <test name="GroupTest">
+        <groups>
+            <run>
+                <!-- 每次执行一条 , 查看结果 -->
+                <include name="testGroup1"/>
+                <!--<include name="testGroup2"/>-->
+                <!--<include name="testGroup3"/>-->
+            </run>
+        </groups>
+
+        <classes>
+            <class name="test.testng.test.groups.GroupTest"/>
+        </classes>
+    </test>
+</suite>

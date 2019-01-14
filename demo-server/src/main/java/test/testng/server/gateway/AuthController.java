@@ -28,9 +28,9 @@ import java.util.UUID;
 public class AuthController {
 
     private static UserInfo[] REGISTERED_USERS = {
-            new UserInfo("xiaoming", "xiaoming123", "可爱的小明", 23, "man", "3f462e0ae57145358f8ae90ddcabff96"),
-            new UserInfo("xiaohong", "xiaohong123", "温柔的小红", 24, "woman", "d4379948115d4e52b1fd6c6cfaa209f6"),
-            new UserInfo("xiaofang", "xiaofang123", "顽皮的小芳", 25, "woman", "90c910cd3bb643f19dc1232a46828317"),
+            new UserInfo("xiaoming", "xiaoming123", "小明", 23, "man", "3f462e0ae57145358f8ae90ddcabff96"),
+            new UserInfo("xiaohong", "xiaohong123", "小红", 24, "woman", "d4379948115d4e52b1fd6c6cfaa209f6"),
+            new UserInfo("xiaofang", "xiaofang123", "小芳", 25, "woman", "90c910cd3bb643f19dc1232a46828317"),
     };
 
     private static final Map<String, UserInfo> LOGIN_USERS = new HashMap<>();

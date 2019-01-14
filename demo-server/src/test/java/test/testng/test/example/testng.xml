@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="TestSuite">
+    <test name="LoginTest">
+        <groups>
+            <run>
+                <include name="test.login.*"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="test.testng.test.example"/>
+        </packages>
+    </test>
+
+    <test name="OrderTest">
+        <parameter name="hotelId" value="1098009332"/>
+
+        <groups>
+            <run>
+                <include name="test.login.*"/>
+                <include name="test.order.lock"/>
+            </run>
+        </groups>
+
+        <packages>
+            <package name="test.testng.test.example"/>
+        </packages>
+    </test>
+</suite>

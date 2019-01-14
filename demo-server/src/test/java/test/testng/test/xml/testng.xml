@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><!-- dtd文件 , 描述xml的书写规则 -->
+<suite name="TestSuite" verbose="1"><!-- 定义一个测试套件 , 测试套件就是一个或多个测试组成的整体 -->
+    <test name="Test"><!-- 定义一个测试 -->
+        <parameter name="parameter" value="value"/><!-- 定义变量值 , 可以在测试方法上通过注解注入 -->
+
+        <groups><!-- 定义一个测试组 , 可以将组include或exclude , 只有被<run>标签include的组会被执行 -->
+            <define name="check-in-group">
+                <include name="group1"/>
+            </define>
+
+            <define name="functional-group">
+                <include name="group2"/>
+                <include name="group3"/>
+            </define>
+
+            <run>
+                <include name="check-in-group"/>
+                <exclude name="broken"/>
+            </run>
+        </groups>
+
+        <classes>
+            <class name="test.testng.test.dependency.DependencyTest"><!-- 定义测试类 , 类中带有testNG注解的测试方法将被执行 , 默认按照代码中的顺序 -->
+                <methods><!-- 测试方法可以被include或exclude , 以此指定类中哪些方法当前需要执行或排除 -->
+                    <include name="test1"/>
+                </methods>
+            </class>
+        </classes>
+
+        <!--<packages>-->
+        <!--<package name="test.testng.test.dependency"/>&lt;!&ndash; 定义测试类所在的包 , 包内的所有测试类都会被扫描执行 &ndash;&gt;-->
+        <!--</packages>-->
+    </test>
+</suite>

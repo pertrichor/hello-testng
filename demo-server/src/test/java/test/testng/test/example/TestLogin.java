@@ -1,4 +1,4 @@
-package test.testng.unit;
+package test.testng.test.example;
 
 import com.alibaba.fastjson.JSON;
 import lombok.AllArgsConstructor;
@@ -20,22 +20,11 @@ import test.testng.server.utils.HttpUtils;
  * @create 2019-01-11 09:36
  */
 @Slf4j
-public class TestLogin {
+public class TestLogin extends BaseTest {
 
-    private static final String BASE_URL = "http://localhost:8989";
-
-    private static String token;
-
-    @DataProvider(name = "authInfoProvider", parallel = true)
-    public Object[][] provideAuthInfo() {
-        return new Object[][]{
-                {JSON.toJSONString(new AuthInfo("xiaoming", "xiaoming123"))}
-        };
-    }
-
-    @Test(dataProvider = "authInfoProvider", groups = {"loginTestGroup"})
+    @Test(dataProvider = "authInfoProvider", groups = {"test.login.auth"})
     public void testAuth(String param) {
-        String result = HttpUtils.sendPost(BASE_URL + "/login", param, null);
+        String result = HttpUtils.sendPost(BASE_SERVER_URL + "/login", param, null);
         if (StringUtils.isBlank(result)) {
             log.info(">> 登录响应结果为空");
             return;
@@ -50,13 +39,13 @@ public class TestLogin {
         token = resultVO.getToken();
     }
 
-    @Test(dependsOnMethods = "testAuth", groups = {"loginTestGroup"})
+    @Test(dependsOnMethods = "testAuth", groups = {"test.login.userInfo"})
     public void testGetUserInfo() {
         if (StringUtils.isBlank(token)) {
             log.warn(">> 登录失败，无法获取用户信息");
         }
 
-        String result = HttpUtils.sendPost(BASE_URL + "/getUserInfo", token, null);
+        String result = HttpUtils.sendPost(BASE_SERVER_URL + "/getUserInfo", token, null);
         if (StringUtils.isBlank(result)) {
             log.warn(">> 没有获取到用户信息");
             return;

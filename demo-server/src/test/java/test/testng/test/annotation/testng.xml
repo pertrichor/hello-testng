@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="AnnotationTestSuite" verbose="1">
+    <test name="AnnotationTest">
+        <!-- 对应@Parameters的value值 -->
+        <parameter name="parameter" value="This is a parameter from testng.xml"/>
+
+        <classes>
+            <class name="test.testng.test.annotation.AnnotationTest"/>
+        </classes>
+    </test>
+</suite>
