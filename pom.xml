@@ -15,7 +15,7 @@
     <properties>
         <java.version>1.8</java.version>
         <springboot.version>2.1.1.RELEASE</springboot.version>
-        <testng.version>6.8</testng.version>
+        <testng.version>6.8.7</testng.version>
         <http.client.version>4.5.2</http.client.version>
     </properties>
 

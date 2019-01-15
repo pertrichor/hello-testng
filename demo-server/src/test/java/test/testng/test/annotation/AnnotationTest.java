@@ -83,7 +83,7 @@ public class AnnotationTest {
         };
     }
 
-    @Parameters("parameter")
+    @Parameters({"parameter"})
     @Test(groups = "testGroup")
     public void testWithParameter(String parameter) {
         log.info(">> 测试方法 [testWithParameter] 执行 , 参数: {}", parameter);
