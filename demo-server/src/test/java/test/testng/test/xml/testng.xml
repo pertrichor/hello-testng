@@ -1,9 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd"><!-- dtd文件 , 描述xml的书写规则 -->
 <suite name="TestSuite" verbose="1"><!-- 定义一个测试套件 , 测试套件就是一个或多个测试组成的整体 -->
-    <test name="Test1"><!-- 定义一个测试 -->
-        <parameter name="parameter" value="value"/><!-- 定义变量值 , 可以在测试方法上通过注解注入 -->
 
+    <!--testng.xml中只能设置一个<suite>标签，可通过<suite-files>标签实现多个测试集设置。-->
+    <suite-files>
+        <suite-file path="../annotation/testng.xml"/>
+        <suite-file path="../quickstart/testng.xml"/>
+    </suite-files>
+
+    <parameter name="parameter" value="value"/><!-- 定义变量值 , 可以在测试方法上通过注解注入 -->
+
+    <method-selectors>
+        <method-selector>
+            <selector-class name="test.testng.test.xml.MethodSelector"
+                            priority="1"/><!-- 使用IMethodSelector接口的实现类来选择要执行的测试方法 -->
+        </method-selector>
+    </method-selectors>
+
+    <method-selectors>
+        <method-selector>
+            <script language="beanshell"><![CDATA[
+                    groups.containsKey("test")
+                ]]></script><!-- 使用脚本选择要执行的方法 , 如果使用了script , test中的include和exclude都将被忽略 -->
+        </method-selector>
+    </method-selectors>
+
+    <test name="Test1"><!-- 定义一个测试 -->
         <groups><!-- 定义一个测试组 , 可以将组include或exclude , 只有被<run>标签include的组会被执行 -->
             <define name="check-in-group">
                 <include name="group1"/>
@@ -18,36 +40,35 @@
                 <include name="check-in-group"/>
                 <exclude name="broken"/>
             </run>
+
+            <!--group3组依赖于group1,group2组，多个依赖用空格隔开-->
+            <dependencies>
+                <group name="group3" depends-on="group1 group2"/>
+            </dependencies>
         </groups>
 
         <classes>
             <class name="test.testng.test.dependency.DependencyTest">
-                <methods><!-- 测试方法可以被include或exclude , 以此指定类中哪些方法当前需要执行或排除 -->
+                <methods>
                     <include name="test1"/>
-                </methods>
+                </methods><!-- 定义测试方法，include或exclude -->
             </class>
         </classes>
     </test>
 
     <test name="Test2">
         <classes>
-            <class name="test.testng.test.dependency.DependencyTest"/><!-- 定义测试类 , 类中带有testNG注解的测试方法将被执行 , 默认按照代码中的顺序 -->
-        </classes>
+            <class name="test.testng.test.dependency.DependencyTest"/>
+        </classes><!-- 定义测试类 , 类中带有testNG注解的测试方法将被执行 , 默认按照代码中的顺序 -->
     </test>
 
     <test name="Test3">
         <packages>
-            <package name="test.testng.test.dependency"/><!-- 定义测试类所在的包 , 包内的所有测试类都会被扫描执行 -->
-        </packages>
+            <package name="test.testng.test.dependency"/>
+        </packages><!-- 定义测试类所在的包 , 包内的所有测试类都会被扫描执行 -->
     </test>
 
-    <test name="Test4">
-        <method-selectors>
-            <method-selector><!-- 可以使用beanshell表达式来选择要执行的方法 , 如果使用了beanshell , test中的include和exclude都将被忽略 -->
-                <script language="beanshell"><![CDATA[
-                    groups.containsKey("test")
-                ]]></script>
-            </method-selector>
-        </method-selectors>
-    </test>
+    <listeners>
+        <listener class-name="test.testng.test.xml.MethodInterceptor"/>
+    </listeners>
 </suite>

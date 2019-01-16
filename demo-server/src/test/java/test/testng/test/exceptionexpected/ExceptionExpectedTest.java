@@ -13,14 +13,18 @@ import org.testng.annotations.Test;
  */
 public class ExceptionExpectedTest {
 
-    @Test(expectedExceptions = {RuntimeException.class})
-    public void test1() {
-        throw new RuntimeException("预期出现的异常");
+    //    @Test(expectedExceptions = {RuntimeException.class})
+    @Test(expectedExceptions = {CustomerCheckedException.class})
+    public void test1() throws CustomerCheckedException {
+//        throw new RuntimeException("预期出现的异常");
+//         do nothing
     }
 
-    @Test(expectedExceptions = {RuntimeException.class}, expectedExceptionsMessageRegExp = "error")
-    public void test2() {
-        throw new RuntimeException("error");
+    //    @Test(expectedExceptions = {RuntimeException.class}, expectedExceptionsMessageRegExp = "error")
+    @Test(expectedExceptions = {CustomerCheckedException.class}, expectedExceptionsMessageRegExp = "error")
+    public void test2() throws CustomerCheckedException {
+        throw new CustomerCheckedException("exception");
+//        throw new RuntimeException("error");
 //        throw new RuntimeException("exception");
     }
 }

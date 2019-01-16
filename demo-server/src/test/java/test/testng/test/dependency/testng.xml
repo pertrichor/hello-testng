@@ -2,6 +2,12 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="DependencyTestSuite" verbose="1">
     <test name="DependencyTest">
+        <groups>
+            <run>
+                <include name="run"/>
+            </run>
+        </groups>
+
         <classes>
             <class name="test.testng.test.dependency.DependencyTest"/>
         </classes>
