@@ -23,7 +23,6 @@ public class BaseTest {
         log.info(">> jdbc连接正常..");
     }
 
-
     @AfterTest
     public void tearDown() throws InterruptedException {
         log.info(">> 测试结束 , 回滚测试数据..");

@@ -1,15 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="RunTestSuite" verbose="1">
-    <test name="RunTest">
+<suite name="IgnoreTestSuite" verbose="1">
+    <test name="IgnoreTest">
         <groups>
             <run>
                 <exclude name="test.ignore"/>
             </run>
         </groups>
 
-        <packages>
-            <package name="test.testng.test.ignore"/>
-        </packages>
+        <classes>
+            <class name="test.testng.test.ignore.IgnoreTest"/>
+        </classes>
     </test>
 </suite>

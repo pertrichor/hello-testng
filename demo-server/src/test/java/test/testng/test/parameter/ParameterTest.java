@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.testng.annotations.DataProvider;
+import org.testng.annotations.Optional;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
@@ -26,6 +27,7 @@ import java.lang.reflect.Method;
  * 7.2 ITestContext:当前测试的上下文 , 这使得数据提供逻辑可以根据当前测试的上下文内容做出改变.
  * 8. @DataProvider中属性值parallel = true时 , testNG会并行执行provide方法 , 但会保证在test2执行前完成.
  * 9. @Test如果设置了dataProviderClass属性 , testNG仅在指定的class中根据dataProvider属性值查找对应的数据提供者 , 查找失败会抛出异常.
+ * 10. 结合@Optional可以指定默认值。
  *
  * @author XuTao
  * @create 2019-01-13 23:19
@@ -33,20 +35,20 @@ import java.lang.reflect.Method;
 @Slf4j
 public class ParameterTest {
 
-    @Parameters("paramFromXml")
+    @Parameters({"paramFromXml1", "paramFromXml2"})
     @Test
-    public void test1(String param) {
-        log.info(">> Param from xml is {}", param);
+    public void test1(String param1, @Optional("defaultVal") String param2) {
+        log.info(">> Param from xml is {} and {}", param1, param2);
     }
 
     @Test(dataProvider = "dataProvider")
     public void test2(ParamDto dto) {
-        log.info(">> Param from dataProvider is [{}]", JSON.toJSONString(dto));
+        log.info(">> Param from dataProvider is [{}] , threadId:{}", JSON.toJSONString(dto), Thread.currentThread().getId());
     }
 
     @DataProvider(name = "dataProvider", parallel = true)
     public Object[][] provide(Method method) {
-        log.info(">> 为测试方法 [{}] 生成测试参数", method.getName());
+        log.info(">> 为测试方法 [{}] 生成测试参数 , threadId:{}", method.getName(), Thread.currentThread().getId());
 
         return new Object[][]{
                 {new ParamDto("小明", "男", 22)},
@@ -60,10 +62,10 @@ public class ParameterTest {
     @NoArgsConstructor
     public static class ParamDto {
         // 参数1
-        private String param1;
+        private String name;
         // 参数2
-        private String param2;
+        private String gender;
         // 参数3
-        private Integer param3;
+        private Integer age;
     }
 }

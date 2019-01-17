@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
-<suite name="GroupTestSuite" verbose="1">
-    <test name="GroupTest">
-        <parameter name="paramFromXml" value="hello testNG"/>
+<suite name="ParameterTestSuite" verbose="1">
+    <test name="ParameterTest">
+        <parameter name="paramFromXml1" value="hello testNG"/>
 
         <classes>
             <class name="test.testng.test.parameter.ParameterTest"/>

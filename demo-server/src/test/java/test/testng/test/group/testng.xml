@@ -4,10 +4,12 @@
     <test name="GroupTest">
         <groups>
             <run>
-                <!-- 每次执行一条 , 查看结果 -->
-                <include name="testGroup1"/>
-                <!--<include name="testGroup2"/>-->
-                <!--<include name="testGroup3"/>-->
+                <!-- 每次执行一条 , 对比结果 -->
+                <!--<include name="test.group1"/>-->
+                <include name="test.group2"/>
+                <!--<include name="test.group3"/>-->
+                <!--<include name="test.*"/>-->
+                <exclude name="test.group3"/>
             </run>
         </groups>
 

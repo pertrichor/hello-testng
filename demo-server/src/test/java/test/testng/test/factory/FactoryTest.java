@@ -20,10 +20,11 @@ import static java.util.stream.Collectors.toList;
  * <p>
  * 1. @Factory用来动态生成测试类实例 , 可以通过成员变量注入可变参数.
  * 2. @Factory可以使用@DataProvider来提供数据.
- * 3. @Factory和@DataProvider都可以为测试方法提供动态生成的参数 , 较优的选择是 , 当测试类中的测试方法都需要使用成员变量时 , 使用@Factory更方便. 如果每个测试方法参数都不一样 , 使用@DataProvider更合适.
+ * 3. @Factory和@DataProvider都可以为测试方法提供动态生成的参数 , 较优的选择是 , 当测试类中的测试方法都需要使用成员变量时 , 使用@Factory更方便. 如果每个测试方法参数都不一样 , 使用@DataProvider更合适. 也可以两者结合使用 , 并不互斥.
  * 4. @Factory的方法必须由public修饰.
  * 5. @Factory标注的方法只会被执行一次 , 在本测试中 , @Factory方法在测试类中 , 但执行测试类并不会多次执行@Factory方法.
  * 6. 如果测试类中有没有被执行过的@Factory方法 , 那么会执行@Factory方法 , 再继续执行生成的测试类 , 直到测试类中不再包含@Factory方法或不再包含还未执行过的@Factory方法.
+ * 7. 可配合test的group-by-instance属性 , 控制执行顺序.
  *
  * @author XuTao
  * @create 2019-01-13 22:47
@@ -38,7 +39,12 @@ public class FactoryTest {
 
     @Test
     public void test() {
-        log.info(">> 接收到的参数为: {}", var1);
+        log.info(">> test run.. 参数: {}", var1);
+    }
+
+    @Test
+    public void test1() {
+        log.info(">> test1 run.. 参数: {}", var1);
     }
 
     @Factory(dataProvider = "factoryDataProvider")
@@ -49,8 +55,8 @@ public class FactoryTest {
     @DataProvider(name = "factoryDataProvider")
     public Iterator<Object[]> provide() {
         List<Object[]> paramList = new ArrayList<>();
-        paramList.add(new Object[]{new String[]{"测试1", "测试2", "测试3"}});
-        paramList.add(new Object[]{new String[]{"测试4", "测试5", "测试6"}});
+        paramList.add(new Object[]{new String[]{"实例1", "实例2", "实例3"}});
+        paramList.add(new Object[]{new String[]{"实例4", "实例5", "实例6"}});
         return paramList.iterator();
     }
 }

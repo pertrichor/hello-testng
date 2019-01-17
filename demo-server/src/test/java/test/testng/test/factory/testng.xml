@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="FactoryTestSuite">
+    <!--<test name="FactoryTest" group-by-instances="true">-->
     <test name="FactoryTest">
         <classes>
             <class name="test.testng.test.factory.FactoryTest"/>
