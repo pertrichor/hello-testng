@@ -30,7 +30,6 @@ public class BaseTest {
         Properties properties = System.getProperties();
         String runtimeJava = properties.getProperty("java.runtime.name");
         String javaVersion = properties.getProperty("java.specification.version");
-        String classpath = properties.getProperty("java.class.path");
         String javaVmVersion = properties.getProperty("java.vm.version");
         String javaVmName = properties.getProperty("java.vm.name");
         String osArch = properties.getProperty("os.arch");
@@ -47,7 +46,6 @@ public class BaseTest {
         log.info(">> osArch: [{}]", osArch);
         log.info(">> fileEncoding: [{}]", fileEncoding);
         log.info(">> timezone: [{}]", timezone);
-        log.info(">> classpath: {}", classpath);
         log.info("===================================================");
     }
 

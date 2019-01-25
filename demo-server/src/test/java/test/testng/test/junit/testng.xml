@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="JUnitTestSuite" verbose="1">
+    <test name="JUnitTest" junit="true">
+        <classes>
+            <class name="test.testng.test.junit.JunitTest"/>
+        </classes>
+    </test>
+</suite>

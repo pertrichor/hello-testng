@@ -20,7 +20,7 @@ public class TestOrder extends BaseTest {
     private HotelOrderController.LockHotelVO lockHotel;
 
     @Parameters("hotelId")
-    @Test(dependsOnGroups = {"test.login"}, groups = {"test.order.lock"}, alwaysRun = true)
+    @Test(groups = {"test.order.lock"})
     public void testOrder(String hotelId) {
         String lockResult = HttpUtils.sendPost(BASE_SERVER_URL + "hotel/lock", hotelId, null);
         log.info(">> 尝试锁定酒店 , 结果: {}", lockResult);

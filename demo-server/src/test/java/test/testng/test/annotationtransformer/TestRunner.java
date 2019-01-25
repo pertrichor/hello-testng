@@ -1,10 +1,8 @@
 package test.testng.test.annotationtransformer;
 
-import org.testng.ITestNGListener;
 import org.testng.TestNG;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 /**
  * Description:启动
@@ -16,9 +14,7 @@ public class TestRunner {
     public static void main(String[] args) {
         TestNG testNG = new TestNG();
         testNG.setTestClasses(new Class[]{AnnotationTransformerTest.class});
-        List<Class<? extends ITestNGListener>> listeners = new ArrayList<>();
-        listeners.add(MyAnnotationTransformer.class);
-        testNG.setListenerClasses(listeners);
+        testNG.setListenerClasses(Arrays.asList(MyAnnotationTransformer.class));
         testNG.run();
     }
 }

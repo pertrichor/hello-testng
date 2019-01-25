@@ -16,4 +16,9 @@ public class AnnotationTransformerTest {
     public void test() {
         log.info("test run..");
     }
+
+    @Test
+    public void test2() {
+        log.info("test2 run..");
+    }
 }
